@@ -15,7 +15,7 @@
     },
     "husky": {
         "hooks": {
-            "precommit": "webpack"
+            "pre-push": "webpack"
         }
     },
     "dependencies": {

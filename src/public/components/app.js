@@ -42,8 +42,8 @@ export default Vue.component("app", {
     <div class="wrapper" data="blue" data-color="blue">
 
         <div class="main-panel" data="blue" data-color="blue">
-        <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="100">
-    <div class="container">
+        <!--      <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="100">
+    <div class="container" style="padding-top:0">
       <div class="navbar-translate">
         <a class="navbar-brand" href="#">
           <span>Sacolão</span> 
@@ -72,7 +72,7 @@ export default Vue.component("app", {
       </div>
     </div>
   </nav>
-            <!-- Navbar 
+           Navbar 
             <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">

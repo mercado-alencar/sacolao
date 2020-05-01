@@ -4,34 +4,56 @@ import { EventBus } from "../components/event-bus.js";
 
 export default Vue.component("venda", {
 
-  name: "Venda",
-  components: {
-  },
-  data: function () {
-    return {
-        venda:{}
-    };
-  },
-  created: function () {
-  },
-  methods: {
-  pesquisarEndereco() {
-      //todo
-  },
-  salvar(){
-      //todo
-  },
-  imprimir() {
-     // 
-  },
-  submit() {
-      
-  }
+    name: "Venda",
+    components: {
+    },
+    data: function () {
+        return {
+            venda: {},
+            printClass: ""
+        };
+    },
+    created: function () {
+    },
+    methods: {
+        pesquisarEndereco() {
+            //todo
+        },
+        salvar() {
+            //todo
+        },
+        imprimir() {
+            let w = window.open();
+            let html = document.querySelector('form').innerHTML;
+            w.document.write(html);
+            w.print();
+            w.close();
+        },
+        imprimirCaixa() {
+            this.printClass = "termico";
+            this.imprimir();
+            // 
+        },
+        imprimirEscritorio() {
+            this.printClass = "convencional";
+            this.imprimir();
+            // 
+        },
+        submit(evt) {
+            this.salvar();
+            if (evt.submitter.id === 'caixa') {
 
-  },
-  template: `
+                this.imprimirCaixa();
+            } else {
+
+                this.imprimirEscritorio();
+            }
+        }
+
+    },
+    template: `
   <div class="modal-body">
-    <form class="modal-body" @submit="submit">
+    <form class="modal-body" @submit.prevent="submit" action="/imprimir" :class="printClass">
         <div class="row">
             <div class="form-group col-sm-12">
                 <label for="cliente">Cliente</label>
@@ -65,7 +87,7 @@ export default Vue.component("venda", {
              <input type="text" class="form-control" id="bairro" placeholder="Bairro" v-model="venda.bairro">
           </div>
           <div class="form-group col-sm-12">
-          <input type="text" class="form-control" id="referencia" placeholder="Complemento, referência" v-model="venda.bairro">
+          <input type="text" class="form-control" id="referencia" placeholder="Complemento, referência" v-model="venda.referencia">
        </div>
             <div class="form-group col-sm-4">
                 <div class="form-check">
@@ -108,8 +130,8 @@ export default Vue.component("venda", {
             <div class="clearfix"></div>
             <hr>
             <div class="clearfix modal-footer">
-                <button type="submit" class="btn btn-info">Imprimir no Escritório</button>
-                <button type="submit" class="btn btn-info">Imprimir no Caixa</button>
+                <button type="submit" id="escritorio" name="escritorio" class="btn btn-info">Imprimir no Escritório</button>
+                <button type="submit" id="caixa" name="caixa" class="btn btn-info">Imprimir no Caixa</button>
             </div>
         </div>
     </form>

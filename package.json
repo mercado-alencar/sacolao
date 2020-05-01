@@ -11,7 +11,7 @@
         "start:dev": "nodemon index.js",
         "build": "webpack",
         "build-public": "webpack --config webpack.public.conf.js",
-        "prod": "node dist/api.bundle.js"
+        "prod": "webpack && node dist/api.bundle.js"
     },
     "dependencies": {
         "body-parser": "^1.19.0",

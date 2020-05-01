@@ -16,7 +16,7 @@
     "husky": {
         "hooks": {
             "precommit": "webpack"
-        } 
+        }
     },
     "dependencies": {
         "body-parser": "^1.19.0",

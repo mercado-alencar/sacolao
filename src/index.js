@@ -10,7 +10,7 @@ console.log(`Your port is ${process.env.PORT}`)
 
 app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile('./public/index.html', { root: __dirname });
 });
 
 

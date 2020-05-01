@@ -99,7 +99,7 @@ export default Vue.component("venda", {
                 </div>
             </div>
             <div class="form-group col-sm-4" v-if="venda.levarTroco">
-                <input type="text" class="form-control" id="troco" placeholder="Troco" required v-model="venda.troco">
+                <input type="number" min="1" step="any" class="form-control" id="troco" placeholder="Troco Para" required v-model="venda.troco">
             </div>
             <div class="form-group col-sm-12">
             <label for="obs">Obs</label>

@@ -3,7 +3,7 @@
     "description": "Scheduler to request systems to get they status",
     "main": "src/index.js",
     "scripts": {
-        "start": "node src/index.js",
+        "start": "nodemon --inspect src/index.js",
         "log": "echo \"testinnng\"",
         "heroku": "git push heroku",
         "eslint": "eslint ./",
@@ -20,30 +20,17 @@
     },
     "dependencies": {
         "body-parser": "^1.19.0",
-        "esm": "^3.2.25",
-        "express": "^4.17.1",
-        "form-data": "^2.5.1",
-        "mssql": "^6.2.0",
-        "node-cron": "^2.0.3",
-        "node-fetch": "^2.6.0",
-        "nodemailer": "^2.4.1",
-        "pg": "^7.12.1",
-        "dotenv": "^8.2.0"
-    },
-    "engines": {
-        "node": "8"
+        "dotenv": "^8.2.0",
+        "pg": "^8.2.1"
     },
     "private": true,
     "devDependencies": {
-        "@commitlint/cli": "^8.3.4",
-        "@commitlint/config-conventional": "^8.3.4",
-        "body-parser": "^1.19.0",
         "copy-webpack-plugin": "^5.1.1",
         "css-loader": "^3.5.3",
         "dotenv": "^8.2.0",
         "eslint": "^6.8.0",
-        "eslint-config-airbnb-base": "^14.0.0",
-        "eslint-plugin-import": "^2.20.1",
+        "eslint-config-airbnb-base": "^14.1.0",
+        "eslint-plugin-import": "^2.20.2",
         "esm": "^3.2.25",
         "express": "^4.17.1",
         "form-data": "^2.5.1",
@@ -51,7 +38,7 @@
         "node-cron": "^2.0.3",
         "node-fetch": "^2.6.0",
         "nodemailer": "^2.4.1",
-        "nodemon": "^2.0.2",
+        "nodemon": "^2.0.4",
         "pg": "^7.12.1",
         "style-loader": "^1.2.1",
         "webpack": "^4.43.0",

@@ -5,6 +5,7 @@
 module.exports = (() => {
     return {
         User: require('./models/User'),
-        Cliente:  require('./models/User')
+        Cliente:  require('./models/Cliente'),
+        Venda:  require('./models/Venda')
     };
 })();

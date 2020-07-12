@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.use(routers);
+app.use('/api',routers);
 app.listen(process.env.PORT,()=>{
     logger.info(`App started at ${process.env.PORT}`);
 })

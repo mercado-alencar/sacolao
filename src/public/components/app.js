@@ -1,5 +1,3 @@
-import { EventBus } from "./event-bus.js"
-
 export default Vue.component("app", {
     data: function () {
         return {

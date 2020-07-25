@@ -7,7 +7,9 @@ class Service {
 		this.logger = logger;
 	}
 	async get(id) {
-		//TODO
+
+		let entity = new this.table();
+		return await entity.get(id);
 	}
 	async persist(persistObject) {
 		//TODO
@@ -28,7 +30,7 @@ class Service {
 	}
 	async list() {
 		let entity = new this.table();
-		return await entity.list() ;
+		return await entity.list();
 
 	}
 

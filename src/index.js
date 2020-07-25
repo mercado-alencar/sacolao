@@ -28,13 +28,14 @@ app.use((req, res, next) => {
   return next();
 });
 
-
-
-
-app.get('/', function (req, res) {
-  res.send('Wellcome')
-});
-app.use(routers);
+app.use('/api',routers);
 app.listen(process.env.PORT,()=>{
     logger.info(`App started at ${process.env.PORT}`);
 })
+
+
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', function (req, res) {
+  res.sendFile('./public/index.html', { root: __dirname });
+});

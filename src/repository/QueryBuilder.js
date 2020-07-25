@@ -31,18 +31,18 @@ module.exports = (() => {
 
 	const update = (tableName, params) => {
 		let myQuery = `UPDATE ${process.env.DB_SCHEMA}.${tableName} SET `;
-		let keys = Object.keys(params).filter(k => k != 'id');
+		let keys = Object.keys(params).filter(k => k != 'ID');
 		let vals = [];
 		for (let i = 0; i < keys.length; i++) {
-			if (keys[i] != 'id') {
+			if (keys[i] != 'ID') {
 				myQuery += '' + (keys[i] + " = " + ' $' + (i + 1)) + (i < keys.length - 1 ? ',' : '');
 				vals.push(params[keys[i]])
 			}
 		}
 
 		myQuery += " WHERE ID = $" + (vals.length + 1);
-		myQuery = myQuery.concat('RETURNING *');
-		vals.push(params.id)
+		myQuery = myQuery.concat(' RETURNING ID ');
+		vals.push(params.ID)
 
 		return {
 			query: myQuery,

@@ -8,23 +8,28 @@ class Base {
 		this.id = null;
 		this._tableName = tableName;
 		this._columns = { id: 'ID' };
+		this._defaults = {  };
 	}
 
 
 	_setValues(vals) {
-		if (!vals) return;
-		for (let key in vals) {
-			try {
-			//this[this._columns[key]] = vals[key];
-			this[key] = vals[key];
-			} catch(err) {
-				logger.error(err)
-			}
+		for(let key in vals){
+			if(this._columns[key]) {
+				this[key] = vals[key];
+			}	
 		}
+
+		for(let defs in this._defaults){
+			if((typeof this[defs] === "undefined")) {
+				this[defs] = this._defaults[defs];
+			}	
+		}
+		
 	}
 
-	_addColumn(property, column) {
+	_addColumn(property, column, defaultVal) {
 		this._columns[property] = column;
+		if((typeof defaultVal !== "undefined")) this._defaults[property] = defaultVal;
 	}
 
 	_getColumn(property) {
@@ -34,6 +39,19 @@ class Base {
 	getColumn(property) {
 		return this._columns[property];
 	}
+
+	_createUpdateObject() {
+		let obj = {};
+
+		//Get all value and set it in a Column name variables
+		for (var col in this._columns) {
+			if(!(typeof this[col] === "undefined" )) {
+				obj[this._columns[col]] = this[col];
+			}
+		}
+		return obj;
+	}
+	
 	_createPersistObject() {
 		let obj = {};
 
@@ -45,11 +63,10 @@ class Base {
 		}
 		return obj;
 	}
-
 	async _persist(persistObject) {
 		try {
 			const res = await Database.query(persistObject.query, persistObject.values);
-			return res && res.rows && res.rows[0];
+			return res && res.rows && res.rows[0] || {erro : 'Nenhum Persistido'};
 		} catch (err) {
 			logger.error(err);
 			err.erro = 'ERRO';
@@ -68,7 +85,7 @@ class Base {
 		return await this._persist(toPersist);
 	}
 	async update() {
-		let obj = this._createPersistObject()
+		let obj = this._createUpdateObject()
 		let toPersist = queryBuilder.update(this._tableName, obj);
 		return await this._persist(toPersist);
 	}

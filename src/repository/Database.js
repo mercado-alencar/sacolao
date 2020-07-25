@@ -9,7 +9,7 @@ module.exports = (() => {
   const {
     Pool
   } = require('pg');
-  
+
   const options = {
     user: process.env.DB_USER,
     host: process.env.DB_URL,
@@ -17,17 +17,18 @@ module.exports = (() => {
     password: process.env.DB_PASSWORD,
     port: 5432,
     ssl: { rejectUnauthorized: false },
+    showLogs: process.env.DB_SHOW_LOG,
     dialect: 'postgres',
     dialectOptions: {
-      "ssl": {"require":true }
+      "ssl": { "require": true }
     }
   };
 
   const pool = new Pool(options);
 
   const createTables = (client) => {
-client.query(`CREATE SCHEMA IF NOT EXISTS MERCADO_ALENCAR`);
-//client.query(`DROP TABLE MERCADO_ALENCAR.VENDA`);
+    client.query(`CREATE SCHEMA IF NOT EXISTS MERCADO_ALENCAR`);
+    //client.query(`DROP TABLE MERCADO_ALENCAR.VENDA`);
     client.query(`
         CREATE TABLE IF NOT EXISTS MERCADO_ALENCAR.VENDA (
         ID serial,
@@ -61,7 +62,13 @@ client.query(`CREATE SCHEMA IF NOT EXISTS MERCADO_ALENCAR`);
   })
 
 
-  const wrapper = (query, params = []) => pool.query(query, params);
+  const wrapper = (query, params = []) => {
+    if (new Boolean(options.showLogs)) {
+      logger.info('EXECUTE QUERY ' + query);
+    }
+    return pool.query(query, params)
+  };
+
   return {
     query: wrapper
   }

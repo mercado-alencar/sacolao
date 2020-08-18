@@ -11,7 +11,7 @@
         "start:dev": "nodemon index.js",
         "build": "webpack",
         "build-public": "webpack --config webpack.public.conf.js",
-        "prod": "node dist/api.bundle.js"
+        "prod": "node src/index.js"
     },
     "husky": {
         "hooks": {}

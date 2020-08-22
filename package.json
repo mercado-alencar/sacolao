@@ -13,9 +13,6 @@
         "build-public": "webpack --config webpack.public.conf.js",
         "prod": "node src/index.js"
     },
-    "husky": {
-        "hooks": {}
-    },
     "dependencies": {
         "express": "^4.17.1",
         "body-parser": "^1.19.0",
@@ -35,6 +32,13 @@
         "nodemon": "^2.0.4",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.11",
-        "webpack-node-externals": "^1.7.2"
+        "webpack-node-externals": "^1.7.2",
+        "@commitlint/cli": "^8.3.4",
+        "@commitlint/config-conventional": "^8.3.4"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
     }
 }

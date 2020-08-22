@@ -121,7 +121,7 @@ class Base {
 		logger.debug(params.query)
 		const res = await Database.query(params.query, params.values);
 		let response = await res.rows;
-		return  response.map(item= new this(item));
+		return  response.map(item => new this(item));
 	}
 	static async paginate(options) {
 		//TODO

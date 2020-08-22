@@ -11,7 +11,7 @@ class Cliente extends Base{
 	this._addColumn('referencia','REFERENCIA');
 	this._addColumn('bairro','BAIRRO');
 	this._addColumn('receber','RECEBER');
-	this._addColumn('troco','TROCO');
+	this._addColumn('trocoPara','TROCO_PARA');
 	this._addColumn('cartao','CARTAO');
 	this._addColumn('obs','OBS');
 	this._addColumn('data','DATA');

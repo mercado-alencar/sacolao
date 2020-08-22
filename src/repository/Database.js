@@ -27,8 +27,10 @@ module.exports = (() => {
   const pool = new Pool(options);
 
   const createTables = (client) => {
+    if(process.env.DB_RESET) {
+
     client.query(`CREATE SCHEMA IF NOT EXISTS MERCADO_ALENCAR`);
-    //client.query(`DROP TABLE MERCADO_ALENCAR.VENDA`);
+    client.query(`DROP TABLE MERCADO_ALENCAR.VENDA`);
     client.query(`
         CREATE TABLE IF NOT EXISTS MERCADO_ALENCAR.VENDA (
         ID serial,
@@ -43,13 +45,14 @@ module.exports = (() => {
         RECEBER BOOLEAN,
         LEVAR_TROCO BOOLEAN,
         CARTAO BOOLEAN,
-        TROCO VARCHAR (50),
+        TROCO_PARA VARCHAR (50),
         OBS VARCHAR (150),
         DATA VARCHAR (50),
         HORA VARCHAR (50),
         ENTREGUE BOOLEAN
         )
         `);
+    }
 
   }
   // callback - checkout a client

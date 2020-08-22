@@ -8,15 +8,24 @@ class Base {
 		this.id = null;
 		this._tableName = tableName;
 		this._columns = { id: 'ID' };
+		this._columnsInverse = {ID:'id'}
 		this._defaults = {  };
 	}
 
 
-	_setValues(vals) {
-		for(let key in vals){
-			if(this._columns[key]) {
-				this[key] = vals[key];
-			}	
+	_setValues(vals, fromDatabase) {
+		if(fromDatabase){
+			for(let key in vals){
+				if(this._columnsInverse[key]) {
+					this[key] = vals[key];
+				}	
+			}
+		} else {
+			for(let key in vals){
+				if(this._columns[key]) {
+					this[key] = vals[key];
+				}	
+			}
 		}
 
 		for(let defs in this._defaults){
@@ -29,6 +38,7 @@ class Base {
 
 	_addColumn(property, column, defaultVal) {
 		this._columns[property] = column;
+		this._columnsInverse[column] = property;
 		if((typeof defaultVal !== "undefined")) this._defaults[property] = defaultVal;
 	}
 
@@ -77,7 +87,7 @@ class Base {
 	async get(id) {
 		const res = await Database.query(queryBuilder.get(this._tableName), [id]);
 		let response = await res.rows[0];
-		return response || {};
+		return this._setValues(response || {});
 	}
 	async save() {
 		let obj = this._createPersistObject()
@@ -103,7 +113,7 @@ class Base {
 	async list() {
 		const res = await Database.query(queryBuilder.list(this._tableName), []);
 		let response = await res.rows;
-		return response;
+		return response.map(item= new this(item));
 
 	}
 	 async search(options) {
@@ -111,7 +121,7 @@ class Base {
 		logger.debug(params.query)
 		const res = await Database.query(params.query, params.values);
 		let response = await res.rows;
-		return response;
+		return  response.map(item= new this(item));
 	}
 	static async paginate(options) {
 		//TODO

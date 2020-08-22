@@ -1,12 +1,14 @@
 const routers = require('./router/routers');
 const express = require('express');
 const app = express();
+var cors = require('cors');
+
 const dotenv = require('dotenv');
 dotenv.config();
 const logger = require('./utils/logger');
 
 const bodyParser = require('body-parser');
-
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {

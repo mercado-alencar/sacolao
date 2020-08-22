@@ -30,14 +30,18 @@ class Service {
 	}
 	async list() {
 		let entity = new this.table();
-		return await entity.list();
+		let result = await entity.list();
+		result = result.map(item => new this.table(item));
 
+		return result;
 	}
 
 	async search(options) {
 		let entity = new this.table();
-		return await entity.search(options);
+		let result = await entity.search(options);
+		result = result.map(item => new this.table(item));
 
+		return result;
 	}
 	async paginate(options) {
 		//TODO

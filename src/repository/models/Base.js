@@ -113,7 +113,7 @@ class Base {
 	async list() {
 		const res = await Database.query(queryBuilder.list(this._tableName), []);
 		let response = await res.rows;
-		return response.map(item= new this(item));
+		return response;
 
 	}
 	 async search(options) {
@@ -121,7 +121,7 @@ class Base {
 		logger.debug(params.query)
 		const res = await Database.query(params.query, params.values);
 		let response = await res.rows;
-		return  response.map(item => new this(item));
+		return  response;
 	}
 	static async paginate(options) {
 		//TODO

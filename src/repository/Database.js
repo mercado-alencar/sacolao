@@ -27,7 +27,7 @@ module.exports = (() => {
   const pool = new Pool(options);
 
   const createTables = (client) => {
-    if(process.env.DB_RESET) {
+    if(process.env.DB_RESET === 1) {
 
     client.query(`CREATE SCHEMA IF NOT EXISTS MERCADO_ALENCAR`);
     client.query(`DROP TABLE MERCADO_ALENCAR.VENDA`);

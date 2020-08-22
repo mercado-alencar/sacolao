@@ -22,7 +22,7 @@ class Base {
 			}
 		} else {
 			for(let key in vals){
-				if(this._columns[key]) {
+				if(this._columns[key] !== "undefined") {
 					this[key] = vals[key];
 				}	
 			}

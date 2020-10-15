@@ -52,6 +52,14 @@ module.exports = (() => {
         ENTREGUE BOOLEAN
         )
         `);
+     client.query(`
+        CREATE TABLE IF NOT EXISTS MERCADO_ALENCAR.SORTEIO (
+        ID serial,
+        NOME VARCHAR (50),
+        TELEFONE VARCHAR (50),
+        DATA VARCHAR (50)
+        )
+        `);
     }
 
   }

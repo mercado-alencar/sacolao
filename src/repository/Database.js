@@ -27,10 +27,12 @@ module.exports = (() => {
   const pool = new Pool(options);
 
   const createTables = (client) => {
-    if(process.env.DB_RESET === 1) {
+    console.log()
+    if(process.env.DB_RESET == 1) {
 
     client.query(`CREATE SCHEMA IF NOT EXISTS MERCADO_ALENCAR`);
     client.query(`DROP TABLE MERCADO_ALENCAR.VENDA`);
+    client.query(`DROP TABLE MERCADO_ALENCAR.SORTEIO`);
     client.query(`
         CREATE TABLE IF NOT EXISTS MERCADO_ALENCAR.VENDA (
         ID serial,
@@ -53,13 +55,16 @@ module.exports = (() => {
         )
         `);
      client.query(`
-        CREATE TABLE IF NOT EXISTS MERCADO_ALENCAR.SORTEIO (
+        CREATE TABLE MERCADO_ALENCAR.SORTEIO (
         ID serial,
         NOME VARCHAR (50),
         TELEFONE VARCHAR (50),
         DATA VARCHAR (50)
         )
         `);
+
+        
+    logger.info('Database reseter');
     }
 
   }

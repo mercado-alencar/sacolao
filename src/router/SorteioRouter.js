@@ -2,7 +2,7 @@
 let router = require("express").Router();
 const SorteioService = require('../controllers/SorteioService');
 
-this.service = new VendaService();
+this.service = new SorteioService();
 
 router.post('/', async (req, res) => {
 	let dto = req.body;

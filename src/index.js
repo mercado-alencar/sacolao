@@ -2,20 +2,22 @@ const routers = require('./router/routers');
 const express = require('express');
 const app = express();
 var cors = require('cors');
-const corsOptions = {
 
-origin: ‘*’, // client (todo mundo pode acessar)
-
-optionsSuccessStatus: 200
-
-}
 const dotenv = require('dotenv');
 dotenv.config();
 const logger = require('./utils/logger');
 
 const bodyParser = require('body-parser');
 
-app.use(cors(corsOptions));
+
+app.use(
+    cors({
+        credentials: true,
+        origin: true
+    })
+);
+app.options('*', cors());
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

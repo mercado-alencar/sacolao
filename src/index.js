@@ -23,13 +23,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
   if (req.headers['content-type'] === 'application/json;' || !req.headers['content-type']) {
     req.headers['content-type'] = 'application/json';
   }
   next();
 });
-
+/*
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
@@ -39,7 +38,7 @@ app.use(function(req, res, next) {
    if (req.method === 'OPTIONS') {
     return res.status(204).send();
   }
-});
+});*/
 /*
 app.use((req, res, next) => {
   

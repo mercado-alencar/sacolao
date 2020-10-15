@@ -6,6 +6,7 @@ module.exports = (() => {
     return {
         User: require('./models/User'),
         Cliente:  require('./models/Cliente'),
-        Venda:  require('./models/Venda')
+        Venda:  require('./models/Venda'),
+        Sorteio:  require('./models/Sorteio')
     };
 })();

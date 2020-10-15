@@ -11,7 +11,9 @@ const bodyParser = require('body-parser');
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
   if (req.headers['content-type'] === 'application/json;' || !req.headers['content-type']) {
     req.headers['content-type'] = 'application/json';
   }

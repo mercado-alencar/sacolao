@@ -1,9 +1,9 @@
 const Service = require('./Service');
-const Venda = require('../repository/models/Venda');
+const VendaRepository = require('../repository/VendaRepository');
 
 class VendaService extends Service {
 	constructor () {
-		super(Venda)
+		super(VendaRepository)
 	}
 }
 

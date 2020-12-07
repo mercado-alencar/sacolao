@@ -27,10 +27,12 @@ app.use(bodyParser.json());
 // });
 
 
-app.use('/api',routers);
+//app.use('/api',routers);
 app.listen(process.env.PORT,()=>{
     logger.info(`App started at ${process.env.PORT}`);
 })
 
 
 app.use(express.static(__dirname + '/public'));
+
+var pgConnection = require('@schirrel/pg-connection');

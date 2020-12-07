@@ -1,9 +1,9 @@
 const Service = require('./Service');
-const Sorteio = require('../repository/models/Sorteio');
+const SorteioRepository = require('../repository/SorteioRepository');
 
 class SorteioService extends Service {
 	constructor () {
-		super(Sorteio)
+		super(SorteioRepository)
 	}
 }
 

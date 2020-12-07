@@ -1,5 +1,5 @@
 
-const Base = require('./Base');
+const Base = require('pg-connection/Database/Model');
 class User extends Base{
 	constructor(args = {}){
 	super("USER")

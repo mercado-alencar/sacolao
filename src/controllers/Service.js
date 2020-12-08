@@ -9,8 +9,8 @@ class Service {
 	async get(id) {
 		return await this.repository.get(id);
 	}
-	async save(model) {
-		return await this.repository.save(model);
+	async create(model) {
+		return await this.repository.create(model);
 	}
 	async update(model) {
 		return await this.repository.update(model);

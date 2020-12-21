@@ -2,43 +2,34 @@
 const logger = require('../utils/logger');
 
 class Service {
-	constructor(table) {
-		this.table = table;
+	constructor(repository) {
+		this.repository = new repository();
 		this.logger = logger;
 	}
 	async get(id) {
-
-		let entity = new this.table();
-		return await entity.get(id);
+		return await this.repository.get(id);
 	}
-	async persist(persistObject) {
-		//TODO
-	}
-	async save(model) {
-		let entity = new this.table(model);
-		return await entity.save();
+	async create(model) {
+		return await this.repository.create(model);
 	}
 	async update(model) {
-		let entity = new this.table(model);
-		return await entity.update();
+		return await this.repository.update(model);
 	}
 
 	async delete(id) {
 		// let entity = new this.table({id:id});
 		// return await entity.delete();
-		return await this.table.deleteById(id);
+		return await this.repository.delete(id);
 	}
 	async list() {
-		let entity = new this.table();
-		let result = await entity.list();
+		let result = await this.repository.list();
 		result = result.map(item => new this.table(item));
 
 		return result;
 	}
 
 	async search(options) {
-		let entity = new this.table();
-		let result = await entity.search(options);
+		let result = await this.repository.search(options);
 		result = result.map(item => new this.table(item));
 
 		return result;
